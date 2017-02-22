@@ -1,0 +1,55 @@
+<?php
+
+namespace johe14\RSSreader;
+
+/**
+ * A class to show a RSS-feed.
+ *
+ */
+class CRSSreader { 
+   
+    /**
+     * Properties
+     *
+     */ 
+    private $options = array();
+    private $url;
+    private $heading;
+    private $items;
+     
+    /**
+     * Constructor
+     *
+     * @param array $options to alter the default behaviour.
+     */
+    public function __construct($options=array()) {
+       $this->url = $options['url'];
+       $this->heading = $options['heading']; 
+       $this->items = $options['items'];
+       
+       // Test not empty
+       
+    }
+	
+    public function readRSS(){
+    	
+       $html = "<article>";
+       $xml = simplexml_load_file($this->url);
+
+       for($i = 0; $i < $this->items; $i++){
+	       $title = $xml->channel->item[$i]->title;
+	       $link = $xml->channel->item[$i]->link;
+	       $description = $xml->channel->item[$i]->description;
+	       $pubDate = $xml->channel->item[$i]->pubDate;
+	
+           $html .= "<a href='$link'><h3>$title</h3></a>";
+	       $html .= "$description";
+	       $html .= "<br />$pubDate<hr />";
+       }
+       $html .= "</article>";
+           
+       return $html;
+    
+    }      
+     
+}
