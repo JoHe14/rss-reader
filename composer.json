@@ -1,5 +1,5 @@
 {     
-    "name": "johe14/RSSreader", 
+    "name": "johe14/rss-reader", 
     "description": "PHP class that lists a RSS feed", 
     "keywords": ["module", "rssfeed", "rssreader", "mvc", "education"], 
     "license": "MIT", 
